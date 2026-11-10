@@ -52,12 +52,14 @@ def patient_normalise(data):
     Normalise patient data from a 2D inflammation data array.
 
     NaN values are ignored, and normalised to 0.
-
+    Positive infinity is treated as the row maximum and normalised to 1;
+    finite values in a row containing infinity become 0.
     Negative values are rounded to 0.
     """
-    max = np.nanmax(data, axis=1)
+    row_max = np.nanmax(data, axis=1)
     with np.errstate(invalid='ignore', divide='ignore'):
-        normalised = data / max[:, np.newaxis]
+        normalised = data / row_max[:, np.newaxis]
     normalised[np.isnan(normalised)] = 0
+    normalised[np.isposinf(data)] = 1
     normalised[normalised < 0] = 0
     return normalised
