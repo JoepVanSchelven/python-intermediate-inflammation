@@ -2,7 +2,7 @@
 
 import numpy as np
 import numpy.testing as npt
-
+import pytest
 from inflammation.models import daily_mean
 from inflammation.models import patient_normalise
 
