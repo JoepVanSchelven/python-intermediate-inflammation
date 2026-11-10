@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         os: ["ubuntu-latest", "windows-latest"]
+
         python-version: ["3.12", "3.13", "3.14"]
 
     # Here we add the reference to the os matrix values
