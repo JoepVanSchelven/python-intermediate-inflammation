@@ -39,6 +39,7 @@ pytest==9.2.0
 pytest-cov==7.1.0
 python-dateutil==4.0.0
 pyzmq==27.3.0
+ruff==0.17.4
 stack-data==0.6.3
 tomlkit==0.15.2
 tornado==6.6
