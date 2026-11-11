@@ -56,6 +56,8 @@ def patient_normalise(data):
     finite values in a row containing infinity become 0.
     Negative values are rounded to 0.
     """
+    if np.any(data < 0):
+        raise ValueError('Inflammation values should not be negative')
     row_max = np.nanmax(data, axis=1)
     with np.errstate(invalid='ignore', divide='ignore'):
         normalised = data / row_max[:, np.newaxis]
