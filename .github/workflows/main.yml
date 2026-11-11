@@ -16,6 +16,9 @@ jobs:
 
     # Same key-value pairs as in "Defining Our Workflow" section
     steps:
+    - name: Check style with Ruff
+      run: |
+        python3 -m ruff check --exit-zero --output-format=github inflammation    
 
     - name: Checkout repository
       uses: actions/checkout@v4
