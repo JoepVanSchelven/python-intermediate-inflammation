@@ -7,13 +7,26 @@ import numpy as np
 
 from inflammation import models, views
 
+class JSONDataSource:
+  """
+  Loads patient data with inflammation values from JSON files within a specified folder.
+  """
+  def __init__(self, dir_path):
+    self.dir_path = dir_path
 
+  def load_inflammation_data(self):
+    data_file_paths = glob.glob(os.path.join(self.dir_path, 'inflammation*.json'))
+    if len(data_file_paths) == 0:
+      raise ValueError(f"No inflammation JSON files found in path {self.dir_path}")
+    data = map(models.load_json, data_file_paths)
+    return list(data)
+  
 
 class CSVDataSource:
     def __init__(self, dir_path):
         self.dir_path = dir_path
     
-    def load_infalmmation_data(self):
+    def load_inflammation_data(self):
         """Loads all inflammation data from CSV files within a directory.
 
         Returns:
